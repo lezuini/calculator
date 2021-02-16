@@ -429,34 +429,19 @@ function cleanOne(){
     }
     operation = rebuild;
 
-    //If the last character is not a space
-    if (operation[operation.length - 1] !== " "){
-      if (operation[1] !== " "){
-        screen.value = operation;
+    //Clean spaces
+    rebuild = "";
+    for (let i = 0; i < operation.length; i++){
+      if (operation[i] !== " "){
+        rebuild += operation[i];
       }
       else {
-        let clean = "";
-        for (let i = 0; i < operation.length; i++){
-          if (operation[i] !== " "){
-            clean += operation[i];
-          }
-        }
-        screen.value = clean;
+        continue;
+        console.log("Cleaning space");
       }
     }
-    else {
-      rebuild = "";
-      for (let i = 0; i < operation.length; i++){
-        if (operation[i] !== " "){
-          rebuild += operation[i];
-        }
-        else {
-          continue;
-          console.log("Cleaning space");
-        }
-      }
-      screen.value = rebuild;
-    }
+    screen.value = rebuild;
+
     console.log("Result: <" + operation + ">");
   }
   else {
