@@ -140,7 +140,16 @@ function calculateAll() {
   }
   //Root mode
   else {
-    rebuild = operation + " ";
+    if (isNaN(operation[operation.length - 1])){
+      console.log("d");
+      for (let i = 0; i < operation.length - 1; i++) {
+        rebuild += operation[i];
+      }
+      rebuild += " ";
+    }
+    else {
+      rebuild = operation + " ";
+    }
   }
   console.log("Rebuild: <" + rebuild + ">");
 
@@ -192,7 +201,7 @@ function calculateAll() {
           modeSign1 = "^";
           modeSign2 = "^";
         } else if (mode === "*/") {
-          modeSign1 = "*";
+          modeSign1 = "x";
           modeSign2 = "/";
         } else if (mode === "+-") {
           modeSign1 = "+";
@@ -232,7 +241,7 @@ function calculateAll() {
           if (mode === "^") {
             temp **= parseFloat(numbers[i]);
           } else if (mode === "*/") {
-            if (tempSign === "*") {
+            if (tempSign === "x") {
               temp *= parseFloat(numbers[i]);
             } else {
               temp /= parseFloat(numbers[i]);
@@ -473,6 +482,14 @@ record.addEventListener("click", function(){
     let recordTemp = recordOperation;
     recordOperation = "";
     cleanAll();
+    for (let i = 0; i < recordTemp.length; i++){
+      if (recordTemp[i] === "√"){
+        mode = "sqrt";
+      }
+      else if (recordTemp[i] === "."){
+        dot = true;
+      }
+    }
     addValue(recordTemp);
     recordTemp += " ";
     screen.value = (recordTemp.split(" ")).join("");
