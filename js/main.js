@@ -13,6 +13,7 @@ let operation = "";
 let symbol = false;
 let mode = "normal";
 let dot = false;
+let recordOperation = "";
 
 //Hide Info
 function hide() {
@@ -156,6 +157,8 @@ function calculateAll() {
   let j = 0;
 
   //Save operation in history
+  recordOperation = result.join(" ");
+  console.log(recordOperation);
   let recordValue = result.join("");
 
   //Normal mode
@@ -169,47 +172,80 @@ function calculateAll() {
     }
 
     operations("^");
-    operations("/");
-    operations("*");
-    operations("+");
-    operations("-");
+    operations("*/");
+    operations("+-");
 
     function operations(mode) {
+      //Clear things
       clearValues();
+      let tempSign = "";
 
+      //Main process
       for (let i = 0; i < result.length; i++) {
         let element = result[i];
 
+        //What operation to do
+        let modeSign1 = "";
+        let modeSign2 = "";
+
+        if (mode === "^") {
+          modeSign1 = "^";
+          modeSign2 = "^";
+        } else if (mode === "*/") {
+          modeSign1 = "*";
+          modeSign2 = "/";
+        } else if (mode === "+-") {
+          modeSign1 = "+";
+          modeSign2 = "-";
+        }
+
+        //If an operation is not waiting
         if (!waiting) {
+          //Is a number
           if (!isNaN(element)) {
             numbers[i] = element;
             newArray[j] = element;
             j++;
             console.log(numbers[i]);
-          } else if (element === mode) {
+          }
+          //Is a symbol
+          else if (element === modeSign1 || element === modeSign2) {
             temp = parseFloat(numbers[i - 1]);
-            console.log(element);
+            tempSign = element;
+            console.log(tempSign);
             waiting = true;
-          } else {
+          }
+          //Is a dot
+          else {
             numbers[i] = element;
             newArray[j] = element;
             j++;
             console.log(numbers[i]);
           }
-        } else {
+        }
+        //Operations
+        else {
           numbers[i] = element;
           console.log(numbers[i]);
+
+          //Selecting operation
           if (mode === "^") {
             temp **= parseFloat(numbers[i]);
-          } else if (mode === "/") {
-            temp /= parseFloat(numbers[i]);
-          } else if (mode === "*") {
-            temp *= parseFloat(numbers[i]);
-          } else if (mode === "+") {
-            temp += parseFloat(numbers[i]);
-          } else if (mode === "-") {
-            temp -= parseFloat(numbers[i]);
+          } else if (mode === "*/") {
+            if (tempSign === "*") {
+              temp *= parseFloat(numbers[i]);
+            } else {
+              temp /= parseFloat(numbers[i]);
+            }
+          } else if (mode === "+-") {
+            if (tempSign === "+") {
+              temp += parseFloat(numbers[i]);
+            } else {
+              temp -= parseFloat(numbers[i]);
+            }
           }
+
+          //Writing result
           console.log("Result: <" + temp + ">");
           newArray[--j] = temp;
           j++;
@@ -431,6 +467,17 @@ function cleanOne() {
     console.log("Empty");
   }
 }
+
+record.addEventListener("click", function(){
+  if (recordOperation !== ""){
+    let recordTemp = recordOperation;
+    recordOperation = "";
+    cleanAll();
+    addValue(recordTemp);
+    recordTemp += " ";
+    screen.value = (recordTemp.split(" ")).join("");
+  }
+});
 
 document.addEventListener("keydown", (ev) => {
   let key = ev.key;

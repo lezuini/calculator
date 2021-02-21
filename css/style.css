@@ -64,7 +64,7 @@ body::after {
   display: grid;
 }
 
-.calculator #record {
+#record {
   grid-column: span 5;
   height: 26px;
   width: 230px;
@@ -77,10 +77,28 @@ body::after {
   background: transparent;
   color: #90979e;
   border-right: 1px solid rgba(255, 255, 255, 0.05);
-  cursor: default;
+  cursor: pointer;
+  -webkit-transition: background 0.5s ease;
+  -moz-transition: background 0.5s ease;
+  -ms-transition: background 0.5s ease;
+  -o-transition: background 0.5s ease;
+  transition: background 0.5s ease;
 }
 
-.calculator #screen {
+#record:hover {
+  -webkit-transition-duration: 0s;
+  -moz-transition-duration: 0s;
+  -ms-transition-duration: 0s;
+  -o-transition-duration: 0s;
+  transition-duration: 0s;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#record:active {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+#screen {
   grid-column: span 5;
   height: 46px;
   width: 230px;
@@ -97,7 +115,7 @@ body::after {
   cursor: default;
 }
 
-.calculator input[type="button"] {
+input[type="button"] {
   -ms-display: grid;
   display: grid;
   align-items: center;
@@ -124,7 +142,7 @@ body::after {
   transition: background 0.5s ease;
 }
 
-.calculator input[type="button"]:hover {
+input[type="button"]:hover {
   -webkit-transition-duration: 0s;
   -moz-transition-duration: 0s;
   -ms-transition-duration: 0s;
@@ -133,34 +151,34 @@ body::after {
   background: rgba(255, 255, 255, 0.05);
 }
 
-.calculator input[type="button"]:active {
+input[type="button"]:active {
   background-color: #f71787;
   font-size: 20px;
   line-height: 20px;
   font-weight: 500;
 }
 
-.calculator input[value="0"],
-.calculator input[value="CA"],
-.calculator input[value="C"] {
+input[value="0"],
+input[value="CA"],
+input[value="C"] {
   grid-column: span 2;
   width: 92px;
 }
 
-.calculator input[value="="] {
+input[value="="] {
   grid-row: span 2;
   height: 92px;
 }
 
-.calculator input[type="button"].opaque {
+input[type="button"].opaque {
   background: rgba(255, 255, 255, 0.05);
 }
 
-.calculator input[type="button"].opaque:hover {
+input[type="button"].opaque:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
-.calculator input[type="button"].opaque:active {
+input[type="button"].opaque:active {
   background: #fc7840;
 }
 
@@ -252,37 +270,37 @@ a {
 }
 
 @media screen and (min-height: 400px) and (min-width: 320px) {
-  .calculator #record {
+  #record {
     height: 46px;
     width: 270px;
     padding: 11px 15px 0;
     font-size: 16px;
     line-height: 16px;
   }
-  .calculator #screen {
+  #screen {
     height: 54px;
     width: 270px;
     padding: 0 17px 15px;
     font-size: 24px;
     line-height: 24px;
   }
-  .calculator input[type="button"] {
+  input[type="button"] {
     height: 54px;
     width: 54px;
     font-size: 16px;
     line-height: 16px;
   }
-  .calculator input[type="button"]:active {
+  input[type="button"]:active {
     font-size: 20px;
     line-height: 20px;
   }
-  .calculator input[value="0"],
-  .calculator input[value="CA"],
-  .calculator input[value="C"] {
+  input[value="0"],
+  input[value="CA"],
+  input[value="C"] {
     width: 108px;
   }
 
-  .calculator input[value="="] {
+  input[value="="] {
     height: 108px;
   }
   #info {
@@ -298,35 +316,35 @@ a {
 }
 
 @media screen and (min-height: 500px) and (min-width: 375px) {
-  .calculator #record {
+  #record {
     height: 56px;
     width: 320px;
     font-size: 18px;
     line-height: 18px;
   }
-  .calculator #screen {
+  #screen {
     height: 64px;
     width: 320px;
     font-size: 28px;
     line-height: 28px;
   }
-  .calculator input[type="button"] {
+  input[type="button"] {
     height: 64px;
     width: 64px;
     font-size: 18px;
     line-height: 18px;
   }
-  .calculator input[type="button"]:active {
+  input[type="button"]:active {
     font-size: 24px;
     line-height: 24px;
   }
-  .calculator input[value="0"],
-  .calculator input[value="CA"],
-  .calculator input[value="C"] {
+  input[value="0"],
+  input[value="CA"],
+  input[value="C"] {
     width: 128px;
   }
 
-  .calculator input[value="="] {
+  input[value="="] {
     height: 128px;
   }
   #info {
@@ -345,35 +363,35 @@ a {
 }
 
 @media screen and (min-height: 540px) and (min-width: 425px) {
-  .calculator #record {
+  #record {
     height: 56px;
     width: 360px;
     font-size: 20px;
     line-height: 20px;
   }
-  .calculator #screen {
+  #screen {
     height: 72px;
     width: 360px;
     font-size: 32px;
     line-height: 32px;
   }
-  .calculator input[type="button"] {
+  input[type="button"] {
     height: 72px;
     width: 72px;
     font-size: 20px;
     line-height: 20px;
   }
-  .calculator input[type="button"]:active {
+  input[type="button"]:active {
     font-size: 26px;
     line-height: 26px;
   }
-  .calculator input[value="0"],
-  .calculator input[value="CA"],
-  .calculator input[value="C"] {
+  input[value="0"],
+  input[value="CA"],
+  input[value="C"] {
     width: 144px;
   }
 
-  .calculator input[value="="] {
+  input[value="="] {
     height: 144px;
   }
   #info {
@@ -389,35 +407,35 @@ a {
 }
 
 @media screen and (min-height: 620px) and (min-width: 520px) {
-  .calculator #record {
+  #record {
     height: 56px;
     width: 420px;
     font-size: 24px;
     line-height: 24px;
   }
-  .calculator #screen {
+  #screen {
     height: 84px;
     width: 420px;
     font-size: 36px;
     line-height: 36px;
   }
-  .calculator input[type="button"] {
+  input[type="button"] {
     height: 84px;
     width: 84px;
     font-size: 24px;
     line-height: 24px;
   }
-  .calculator input[type="button"]:active {
+  input[type="button"]:active {
     font-size: 28px;
     line-height: 28px;
   }
-  .calculator input[value="0"],
-  .calculator input[value="CA"],
-  .calculator input[value="C"] {
+  input[value="0"],
+  input[value="CA"],
+  input[value="C"] {
     width: 168px;
   }
 
-  .calculator input[value="="] {
+  input[value="="] {
     height: 168px;
   }
   #info {
@@ -436,35 +454,35 @@ a {
 }
 
 @media screen and (min-height: 720px) and (min-width: 620px) {
-  .calculator #record {
+  #record {
     height: 56px;
     width: 460px;
     font-size: 26px;
     line-height: 26px;
   }
-  .calculator #screen {
+  #screen {
     height: 92px;
     width: 460px;
     font-size: 40px;
     line-height: 40px;
   }
-  .calculator input[type="button"] {
+  input[type="button"] {
     height: 92px;
     width: 92px;
     font-size: 26px;
     line-height: 26px;
   }
-  .calculator input[type="button"]:active {
+  input[type="button"]:active {
     font-size: 30px;
     line-height: 30px;
   }
-  .calculator input[value="0"],
-  .calculator input[value="CA"],
-  .calculator input[value="C"] {
+  input[value="0"],
+  input[value="CA"],
+  input[value="C"] {
     width: 184px;
   }
 
-  .calculator input[value="="] {
+  input[value="="] {
     height: 184px;
   }
   #info {
