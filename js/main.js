@@ -3,12 +3,11 @@ let screen = document.getElementById("screen");
 let info = document.getElementById("info");
 let infoBtn = document.getElementById("infoBtn");
 
-/* document.addEventListener("keydown", (e) => {
-  console.log(e);
-  if(e.key == 8 || e.key == 46) {
-    e.preventDefault();
-  }
-}); */
+window.onload = scrFocus();
+
+function scrFocus() {
+  screen.focus();
+}
 
 let operation = "";
 let symbol = false;
@@ -16,42 +15,46 @@ let mode = "normal";
 let dot = false;
 
 //Hide Info
-function hide(){
+function hide() {
   info.classList.toggle("hide");
 }
 infoBtn.addEventListener("click", () => {
   hide();
-})
+});
 
 //Cookies
 let setCookie = (name, value, days) => {
-  let expires = ""; if (days) {
-  let date = new Date();
-  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-  expires = "; expires=" + date.toUTCString();
-  }document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  let expires = "";
+  if (days) {
+    let date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
 };
 
-let getCookie = name => { let nameEQ = name + "=";
-  let ca = document.cookie.split(";"); for (var i = 0; i < ca.length; i++) { let c = ca[i];
-  while (c.charAt(0) === " ") c = c.substring(1, c.length); if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,
-    c.length);
-  } return null;
+let getCookie = (name) => {
+  let nameEQ = name + "=";
+  let ca = document.cookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === " ") c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
 };
 
 function checkCookie() {
-  var infoAlreadySeen  = getCookie("infoAlreadySeen");
+  var infoAlreadySeen = getCookie("infoAlreadySeen");
 
   if (infoAlreadySeen !== "true") {
     hide();
     setCookie("infoAlreadySeen", "true", 10);
   }
-};
+}
 
 //Prevent the info from appearing every time you recharge
 checkCookie();
-
-
 
 //Testing zone
 
@@ -62,35 +65,32 @@ function refine(Value) {
   let div = false;
   let exponecial = false;
 
-  for (let i = 0; i < float.length; i ++){
+  for (let i = 0; i < float.length; i++) {
     if (div) {
       decimal += float[i];
-    }
-    else {
-      if (float[i] === "."){
+    } else {
+      if (float[i] === ".") {
         div = true;
-      }
-      else {
+      } else {
         integral += float[i];
       }
     }
-    if (float[i] === "e"){
+    if (float[i] === "e") {
       exponecial = true;
     }
   }
 
-  if (!exponecial){
+  if (!exponecial) {
     for (let i = 0; i < 4; i++) {
-      if (decimal[decimal.length - 1] === "0"){
+      if (decimal[decimal.length - 1] === "0") {
         decimal = decimal.slice(0, -1);
       }
     }
   }
 
-  if (decimal.length > 0){
+  if (decimal.length > 0) {
     return integral + "." + decimal;
-  }
-  else {
+  } else {
     return integral;
   }
 }
@@ -98,21 +98,20 @@ function refine(Value) {
 //Clean everything when recharging
 cleanAll();
 
-function calculateAll(){
+function calculateAll() {
   let rebuild = "";
 
   //Rebuilding the operation for its transformation into an array
   //Normal mode
-  if (mode !== "sqrt"){
+  if (mode !== "sqrt") {
     //If the length of the operation is longer than one
-    if (operation.length !== 1){
+    if (operation.length !== 1) {
       //The penultimate element is a symbol
-      if (isNaN(operation[operation.length - 2])){
-        if (operation[operation.length - 2] === "."){
+      if (isNaN(operation[operation.length - 2])) {
+        if (operation[operation.length - 2] === ".") {
           rebuild = operation + " ";
-        }
-        else {
-          for (let i = 0; i < (operation.length - 2); i++) {
+        } else {
+          for (let i = 0; i < operation.length - 2; i++) {
             rebuild += operation[i];
           }
           symbol = false;
@@ -120,8 +119,8 @@ function calculateAll(){
         }
       }
       //The last element is a dot
-      else if (isNaN(operation[operation.length - 1])){
-        for (let i = 0; i < (operation.length - 1); i++) {
+      else if (isNaN(operation[operation.length - 1])) {
+        for (let i = 0; i < operation.length - 1; i++) {
           rebuild += operation[i];
         }
         rebuild += " ";
@@ -160,8 +159,7 @@ function calculateAll(){
   let recordValue = result.join("");
 
   //Normal mode
-  if (mode === "normal"){
-
+  if (mode === "normal") {
     function clearValues() {
       numbers = [];
       temp = 0;
@@ -182,41 +180,34 @@ function calculateAll(){
       for (let i = 0; i < result.length; i++) {
         let element = result[i];
 
-        if (!waiting){
-          if (!isNaN(element)){
+        if (!waiting) {
+          if (!isNaN(element)) {
             numbers[i] = element;
             newArray[j] = element;
             j++;
             console.log(numbers[i]);
-          }
-          else if (element === mode){
+          } else if (element === mode) {
             temp = parseFloat(numbers[i - 1]);
             console.log(element);
             waiting = true;
-          }
-          else {
+          } else {
             numbers[i] = element;
             newArray[j] = element;
             j++;
             console.log(numbers[i]);
           }
-        }
-        else {
+        } else {
           numbers[i] = element;
           console.log(numbers[i]);
-          if (mode === "^"){
+          if (mode === "^") {
             temp **= parseFloat(numbers[i]);
-          }
-          else if (mode === "/"){
+          } else if (mode === "/") {
             temp /= parseFloat(numbers[i]);
-          }
-          else if (mode === "*"){
+          } else if (mode === "*") {
             temp *= parseFloat(numbers[i]);
-          }
-          else if (mode === "+"){
+          } else if (mode === "+") {
             temp += parseFloat(numbers[i]);
-          }
-          else if (mode === "-"){
+          } else if (mode === "-") {
             temp -= parseFloat(numbers[i]);
           }
           console.log("Result: <" + temp + ">");
@@ -232,7 +223,7 @@ function calculateAll(){
   }
 
   //Root mode
-  else if (mode === "sqrt"){
+  else if (mode === "sqrt") {
     //Remove root
     result.shift();
     console.log("Root of: <" + result + ">");
@@ -248,7 +239,7 @@ function calculateAll(){
   cleanAll();
 
   //If the result is empty
-  if (result.length === 0){
+  if (result.length === 0) {
     result = 0;
   }
 
@@ -258,7 +249,7 @@ function calculateAll(){
 
   //Check if the result contains a dot
   for (let i = 0; i < operation.length; i++) {
-    if (operation[i] === "."){
+    if (operation[i] === ".") {
       //Prevent another dot from being placed
       dot = true;
     }
@@ -266,17 +257,17 @@ function calculateAll(){
 }
 
 //Get input value
-function getData(obj){
+function getData(obj) {
   let input = obj.value;
 
   //If it is the first entry
-  if (operation.length === 0){
+  if (operation.length === 0) {
     //If it's a number
-    if (!isNaN(input)){
+    if (!isNaN(input)) {
       setValue(input);
     }
     //If the symbol is a root
-    else if (input === "√"){
+    else if (input === "√") {
       mode = "sqrt";
       setValue(input);
     }
@@ -287,40 +278,38 @@ function getData(obj){
   //If it is not the first entry
   else {
     //If a symbol has already been entered
-    if (symbol){
+    if (symbol) {
       //Only numbers
-      if (!isNaN(input)){
+      if (!isNaN(input)) {
         symbol = false;
         setValue(input);
       }
-    }
-    else{
+    } else {
       //Is a symbol, the mode is normal and it is not a root
-      if ((isNaN(input)) && (mode === "normal")){
+      if (isNaN(input) && mode === "normal") {
         //Is not a root
-        if (input !== "√"){
+        if (input !== "√") {
           //If it is a dot
-          if (input === "."){
-            if (dot === false){
+          if (input === ".") {
+            if (dot === false) {
               symbol = true;
               setValue(input);
             }
-          }
-          else{
+          } else {
             symbol = true;
             setValue(input);
           }
         }
       }
       //Is a number, the mode is normal
-      else if (mode === "normal"){
+      else if (mode === "normal") {
         setValue(input);
       }
       //Mode root
       else {
         //Is a symbol
-        if (isNaN(input)){
-          if (input === "."){
+        if (isNaN(input)) {
+          if (input === ".") {
             setValue(input);
           }
         }
@@ -334,16 +323,16 @@ function getData(obj){
 }
 
 //Checks before adding entry
-function setValue(value){
+function setValue(value) {
   //If it is not the first entry
-  if (operation.length !== 0){
+  if (operation.length !== 0) {
     //It's a number
-    if (!isNaN(value)){
+    if (!isNaN(value)) {
       addValue(value);
     }
     //Is a dot
-    else if (value === "."){
-      if (dot === false){
+    else if (value === ".") {
+      if (dot === false) {
         dot = true;
         addValue(value);
       }
@@ -353,23 +342,20 @@ function setValue(value){
       dot = false;
       addValue(value, true);
     }
-  }
-  else {
+  } else {
     addValue(value);
   }
 }
 
 //Add entry
 function addValue(entry, isSymbol) {
-  if (isSymbol){
+  if (isSymbol) {
     operation += " " + entry + " ";
-  }
-  else {
-    if (entry === "√"){
+  } else {
+    if (entry === "√") {
       operation += entry + " ";
-    }
-    else {
-    operation += entry;
+    } else {
+      operation += entry;
     }
   }
   screen.value += entry;
@@ -377,7 +363,7 @@ function addValue(entry, isSymbol) {
 }
 
 //Clean everything
-function cleanAll(){
+function cleanAll() {
   record.value = "";
   screen.value = "";
   operation = "";
@@ -388,18 +374,18 @@ function cleanAll(){
 }
 
 //Clean only one entry
-function cleanOne(){
+function cleanOne() {
   let rebuild = "";
 
   //If the operation is not empty
-  if (operation.length !== 0){
+  if (operation.length !== 0) {
     //If the last character is a space
-    if (operation[operation.length - 1] === " "){
+    if (operation[operation.length - 1] === " ") {
       console.log("Cleaning symbol...");
-      if (operation.length === 2){
+      if (operation.length === 2) {
         mode = "normal";
       }
-      for (i = 0; i < operation.length - 3; i ++){
+      for (i = 0; i < operation.length - 3; i++) {
         rebuild += operation[i];
       }
       symbol = false;
@@ -407,7 +393,7 @@ function cleanOne(){
     //If the last character is a dot
     else if (operation[operation.length - 1] === ".") {
       console.log("Cleaning dot...");
-      for (i = 0; i < operation.length - 1; i ++){
+      for (i = 0; i < operation.length - 1; i++) {
         rebuild += operation[i];
       }
       symbol = false;
@@ -416,13 +402,12 @@ function cleanOne(){
     //If the last character is a number
     else {
       console.log("Cleaning number...");
-      if (mode === "sqrt"){
-        for (i = 0; i < operation.length - 1; i ++){
+      if (mode === "sqrt") {
+        for (i = 0; i < operation.length - 1; i++) {
           rebuild += operation[i];
         }
-      }
-      else {
-        for (i = 0; i < operation.length - 1; i ++){
+      } else {
+        for (i = 0; i < operation.length - 1; i++) {
           rebuild += operation[i];
         }
       }
@@ -431,11 +416,10 @@ function cleanOne(){
 
     //Clean spaces
     rebuild = "";
-    for (let i = 0; i < operation.length; i++){
-      if (operation[i] !== " "){
+    for (let i = 0; i < operation.length; i++) {
+      if (operation[i] !== " ") {
         rebuild += operation[i];
-      }
-      else {
+      } else {
         continue;
         console.log("Cleaning space");
       }
@@ -443,8 +427,7 @@ function cleanOne(){
     screen.value = rebuild;
 
     console.log("Result: <" + operation + ">");
-  }
-  else {
+  } else {
     console.log("Empty");
   }
 }
@@ -518,4 +501,5 @@ document.addEventListener("keydown", (ev) => {
       //console.log(key);
       break;
   }
+  scrFocus();
 });

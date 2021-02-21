@@ -75,7 +75,7 @@ body::after {
   font-size: 15px;
   line-height: 15px;
   background: transparent;
-  color:#90979E;
+  color: #90979e;
   border-right: 1px solid rgba(255, 255, 255, 0.05);
   cursor: default;
 }
@@ -140,7 +140,9 @@ body::after {
   font-weight: 500;
 }
 
-.calculator input[value="0"], .calculator input[value="CA"], .calculator input[value="C"] {
+.calculator input[value="0"],
+.calculator input[value="CA"],
+.calculator input[value="C"] {
   grid-column: span 2;
   width: 92px;
 }
@@ -155,7 +157,7 @@ body::after {
 }
 
 .calculator input[type="button"].opaque:hover {
-  background: rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .calculator input[type="button"].opaque:active {
@@ -164,12 +166,12 @@ body::after {
 
 a {
   text-decoration: none;
-  color: #FF7A00;
+  color: #ff7a00;
 }
 
 #info {
   position: absolute;
-  background:rgba(16,31,46, 0.95);
+  background: rgba(16, 31, 46, 0.95);
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px;
@@ -236,7 +238,7 @@ a {
   transition: background 0.5s ease;
 }
 
-#info input:hover{
+#info input:hover {
   -webkit-transition-duration: 0s;
   -moz-transition-duration: 0s;
   -ms-transition-duration: 0s;
@@ -249,7 +251,7 @@ a {
   display: none !important;
 }
 
-@media screen and (min-height: 400px) and (min-width: 320px){
+@media screen and (min-height: 400px) and (min-width: 320px) {
   .calculator #record {
     height: 46px;
     width: 270px;
@@ -274,7 +276,9 @@ a {
     font-size: 20px;
     line-height: 20px;
   }
-  .calculator input[value="0"], .calculator input[value="CA"], .calculator input[value="C"] {
+  .calculator input[value="0"],
+  .calculator input[value="CA"],
+  .calculator input[value="C"] {
     width: 108px;
   }
 
@@ -293,7 +297,7 @@ a {
   }
 }
 
-@media screen and (min-height: 500px) and (min-width: 375px){
+@media screen and (min-height: 500px) and (min-width: 375px) {
   .calculator #record {
     height: 56px;
     width: 320px;
@@ -316,7 +320,9 @@ a {
     font-size: 24px;
     line-height: 24px;
   }
-  .calculator input[value="0"], .calculator input[value="CA"], .calculator input[value="C"] {
+  .calculator input[value="0"],
+  .calculator input[value="CA"],
+  .calculator input[value="C"] {
     width: 128px;
   }
 
@@ -338,7 +344,7 @@ a {
   }
 }
 
-@media screen and (min-height: 540px) and (min-width: 425px){
+@media screen and (min-height: 540px) and (min-width: 425px) {
   .calculator #record {
     height: 56px;
     width: 360px;
@@ -361,7 +367,9 @@ a {
     font-size: 26px;
     line-height: 26px;
   }
-  .calculator input[value="0"], .calculator input[value="CA"], .calculator input[value="C"] {
+  .calculator input[value="0"],
+  .calculator input[value="CA"],
+  .calculator input[value="C"] {
     width: 144px;
   }
 
@@ -380,7 +388,7 @@ a {
   }
 }
 
-@media screen and (min-height: 620px) and (min-width: 520px){
+@media screen and (min-height: 620px) and (min-width: 520px) {
   .calculator #record {
     height: 56px;
     width: 420px;
@@ -403,7 +411,9 @@ a {
     font-size: 28px;
     line-height: 28px;
   }
-  .calculator input[value="0"], .calculator input[value="CA"], .calculator input[value="C"] {
+  .calculator input[value="0"],
+  .calculator input[value="CA"],
+  .calculator input[value="C"] {
     width: 168px;
   }
 
@@ -425,7 +435,7 @@ a {
   }
 }
 
-@media screen and (min-height: 720px) and (min-width: 620px){
+@media screen and (min-height: 720px) and (min-width: 620px) {
   .calculator #record {
     height: 56px;
     width: 460px;
@@ -448,7 +458,9 @@ a {
     font-size: 30px;
     line-height: 30px;
   }
-  .calculator input[value="0"], .calculator input[value="CA"], .calculator input[value="C"] {
+  .calculator input[value="0"],
+  .calculator input[value="CA"],
+  .calculator input[value="C"] {
     width: 184px;
   }
 

@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculator</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="../copy/copy.css">
-  <link rel="icon" href="img/favicon.png">
-</head>
-<body>
-  <div class="container">
-    <div class="calculator">
-      <input type="text" readonly id="record">
-      <input type="text" readonly id="screen" placeholder="0">
-      <input type="button" value="CA" class="opaque" onclick="cleanAll()">
-      <input type="button" value="C" onclick="cleanOne()">
-      <input type="button" value="Info" onclick="hide()">
-      <input type="button" id="b7" value="7" onclick="getData(this)">
-      <input type="button" id="b8" value="8" onclick="getData(this)">
-      <input type="button" id="b9" value="9" onclick="getData(this)">
-      <input type="button" id="bD" value="/" onclick="getData(this)">
-      <input type="button" value="√" onclick="getData(this)">
-      <input type="button" id="b4" value="4" onclick="getData(this)">
-      <input type="button" id="b5" value="5" onclick="getData(this)">
-      <input type="button" id="b6" value="6" onclick="getData(this)">
-      <input type="button" id="bM" value="*" onclick="getData(this)">
-      <input type="button" value="^" onclick="getData(this)">
-      <input type="button" id="b1" value="1" onclick="getData(this)">
-      <input type="button" id="b2" value="2" onclick="getData(this)">
-      <input type="button" id="b3" value="3" onclick="getData(this)">
-      <input type="button" id="bS" value="-" onclick="getData(this)">
-      <input type="button" value="=" class="opaque" onclick="calculateAll()">
-      <input type="button" id="b0" value="0" onclick="getData(this)">
-      <input type="button" id="bP" value="." onclick="getData(this)">
-      <input type="button" id="bA" value="+" onclick="getData(this)">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../copy/copy.css" />
+    <link rel="icon" href="img/favicon.png" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <input type="text" readonly id="record" />
+        <input type="text" readonly id="screen" placeholder="0" />
+        <input type="button" value="CA" class="opaque" onclick="cleanAll()" />
+        <input type="button" value="C" onclick="cleanOne()" />
+        <input type="button" value="Info" onclick="hide()" />
+        <input type="button" id="b7" value="7" onclick="getData(this)" />
+        <input type="button" id="b8" value="8" onclick="getData(this)" />
+        <input type="button" id="b9" value="9" onclick="getData(this)" />
+        <input type="button" id="bD" value="/" onclick="getData(this)" />
+        <input type="button" value="√" onclick="getData(this)" />
+        <input type="button" id="b4" value="4" onclick="getData(this)" />
+        <input type="button" id="b5" value="5" onclick="getData(this)" />
+        <input type="button" id="b6" value="6" onclick="getData(this)" />
+        <input type="button" id="bM" value="*" onclick="getData(this)" />
+        <input type="button" value="^" onclick="getData(this)" />
+        <input type="button" id="b1" value="1" onclick="getData(this)" />
+        <input type="button" id="b2" value="2" onclick="getData(this)" />
+        <input type="button" id="b3" value="3" onclick="getData(this)" />
+        <input type="button" id="bS" value="-" onclick="getData(this)" />
+        <input
+          type="button"
+          value="="
+          class="opaque"
+          onclick="calculateAll()"
+        />
+        <input type="button" id="b0" value="0" onclick="getData(this)" />
+        <input type="button" id="bP" value="." onclick="getData(this)" />
+        <input type="button" id="bA" value="+" onclick="getData(this)" />
+      </div>
     </div>
-  </div>
-  <div id="info" class="hide">
-    <input type="button" value="X" id="infoBtn">
-    <p>Hello user, this is my calculator.</p>
-    <p>You can do operations with the operators: plus, minus, multiplication, division and power.</p>
-    <p>You can only enter the root function if you enter it first, and it is not compatible with the other operations.</p>
-    <p>Made by @leonardomeza87 (<a href="https://github.com/leonardomeza87" target="_blank">GitHub</a>, <a href="https://twitter.com/leonardomeza87" target="_blank">Twitter</a>)</p>
-  </div>
-  <script src="js/main.js"></script>
-</body>
+    <div id="info" class="hide">
+      <input type="button" value="X" id="infoBtn" />
+      <p>Hello user, this is my calculator.</p>
+      <p>
+        You can do operations with the operators: plus, minus, multiplication,
+        division and power.
+      </p>
+      <p>
+        You can only enter the root function if you enter it first, and it is
+        not compatible with the other operations.
+      </p>
+      <p>
+        Made by @leonardomeza87 (<a
+          href="https://github.com/leonardomeza87"
+          target="_blank"
+          >GitHub</a
+        >,
+        <a href="https://twitter.com/leonardomeza87" target="_blank">Twitter</a
+        >)
+      </p>
+    </div>
+    <script src="js/main.js"></script>
+  </body>
 </html>
