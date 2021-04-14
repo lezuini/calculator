@@ -140,14 +140,13 @@ function calculateAll() {
   }
   //Root mode
   else {
-    if (isNaN(operation[operation.length - 1])){
-      console.log("d");
+    if (isNaN(operation[operation.length - 1])) {
+      // console.log("d");
       for (let i = 0; i < operation.length - 1; i++) {
         rebuild += operation[i];
       }
       rebuild += " ";
-    }
-    else {
+    } else {
       rebuild = operation + " ";
     }
   }
@@ -167,7 +166,6 @@ function calculateAll() {
 
   //Save operation in history
   recordOperation = result.join(" ");
-  console.log(recordOperation);
   let recordValue = result.join("");
 
   //Normal mode
@@ -304,6 +302,7 @@ function calculateAll() {
 //Get input value
 function getData(obj) {
   let input = obj.value;
+  // console.log(operation.length);
 
   //If it is the first entry
   if (operation.length === 0) {
@@ -348,7 +347,14 @@ function getData(obj) {
       }
       //Is a number, the mode is normal
       else if (mode === "normal") {
-        setValue(input);
+        if (operation[0] === "0" && operation.length === 1 && input !== 0) {
+          // console.log("aaa");
+          operation = "";
+          screen.value = "";
+          setValue(input);
+        } else {
+          setValue(input);
+        }
       }
       //Mode root
       else {
@@ -477,22 +483,21 @@ function cleanOne() {
   }
 }
 
-record.addEventListener("click", function(){
-  if (recordOperation !== ""){
+record.addEventListener("click", function () {
+  if (recordOperation !== "") {
     let recordTemp = recordOperation;
     recordOperation = "";
     cleanAll();
-    for (let i = 0; i < recordTemp.length; i++){
-      if (recordTemp[i] === "√"){
+    for (let i = 0; i < recordTemp.length; i++) {
+      if (recordTemp[i] === "√") {
         mode = "sqrt";
-      }
-      else if (recordTemp[i] === "."){
+      } else if (recordTemp[i] === ".") {
         dot = true;
       }
     }
     addValue(recordTemp);
     recordTemp += " ";
-    screen.value = (recordTemp.split(" ")).join("");
+    screen.value = recordTemp.split(" ").join("");
   }
 });
 
