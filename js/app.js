@@ -1,12 +1,21 @@
-let record = document.getElementById("record");
-let screen = document.getElementById("screen");
-let info = document.getElementById("info");
-let infoBtn = document.getElementById("infoBtn");
+import inputs from "./inputs.js";
+import correctHeight from "./correct-height.js";
+import info from "./info.js";
 
-window.onload = scrFocus();
+correctHeight();
+inputs();
+// keyboard();
+info();
 
-function scrFocus() {
-  screen.focus();
+const d = document,
+  w = window,
+  $record = d.getElementById("record"),
+  $display = d.getElementById("display");
+
+window.onload = displayFocus();
+
+export function displayFocus() {
+  $display.focus();
 }
 
 let operation = "";
@@ -14,48 +23,6 @@ let symbol = false;
 let mode = "normal";
 let dot = false;
 let recordOperation = "";
-
-//Hide Info
-function hide() {
-  info.classList.toggle("hide");
-}
-infoBtn.addEventListener("click", () => {
-  hide();
-});
-
-//Cookies
-let setCookie = (name, value, days) => {
-  let expires = "";
-  if (days) {
-    let date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
-};
-
-let getCookie = (name) => {
-  let nameEQ = name + "=";
-  let ca = document.cookie.split(";");
-  for (var i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === " ") c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-  }
-  return null;
-};
-
-function checkCookie() {
-  var infoAlreadySeen = getCookie("infoAlreadySeen");
-
-  if (infoAlreadySeen !== "true") {
-    hide();
-    setCookie("infoAlreadySeen", "true", 10);
-  }
-}
-
-//Prevent the info from appearing every time you recharge
-checkCookie();
 
 //Testing zone
 
@@ -97,9 +64,9 @@ function refine(Value) {
 }
 
 //Clean everything when recharging
-cleanAll();
+clearAll();
 
-function calculateAll() {
+export function calculateAll() {
   let rebuild = "";
 
   //Rebuilding the operation for its transformation into an array
@@ -279,7 +246,7 @@ function calculateAll() {
     mode = "normal";
   }
 
-  cleanAll();
+  clearAll();
 
   //If the result is empty
   if (result.length === 0) {
@@ -288,7 +255,7 @@ function calculateAll() {
 
   console.log("Refining: " + result);
   setValue(refine(result));
-  record.value = recordValue;
+  $record.value = recordValue;
 
   //Check if the result contains a dot
   for (let i = 0; i < operation.length; i++) {
@@ -300,8 +267,8 @@ function calculateAll() {
 }
 
 //Get input value
-function getData(obj) {
-  let input = obj.value;
+export function enterEntry(btn) {
+  let input = btn;
   // console.log(operation.length);
 
   //If it is the first entry
@@ -350,7 +317,7 @@ function getData(obj) {
         if (operation[0] === "0" && operation.length === 1 && input !== 0) {
           // console.log("aaa");
           operation = "";
-          screen.value = "";
+          $display.value = "";
           setValue(input);
         } else {
           setValue(input);
@@ -409,14 +376,14 @@ function addValue(entry, isSymbol) {
       operation += entry;
     }
   }
-  screen.value += entry;
+  $display.value += entry;
   console.log("Adding: <" + operation + ">");
 }
 
 //Clean everything
-function cleanAll() {
-  record.value = "";
-  screen.value = "";
+export function clearAll() {
+  $record.value = "";
+  $display.value = "";
   operation = "";
   symbol = false;
   mode = "normal";
@@ -425,7 +392,7 @@ function cleanAll() {
 }
 
 //Clean only one entry
-function cleanOne() {
+export function clear() {
   let rebuild = "";
 
   //If the operation is not empty
@@ -436,7 +403,7 @@ function cleanOne() {
       if (operation.length === 2) {
         mode = "normal";
       }
-      for (i = 0; i < operation.length - 3; i++) {
+      for (let i = 0; i < operation.length - 3; i++) {
         rebuild += operation[i];
       }
       symbol = false;
@@ -444,7 +411,7 @@ function cleanOne() {
     //If the last character is a dot
     else if (operation[operation.length - 1] === ".") {
       console.log("Cleaning dot...");
-      for (i = 0; i < operation.length - 1; i++) {
+      for (let i = 0; i < operation.length - 1; i++) {
         rebuild += operation[i];
       }
       symbol = false;
@@ -454,11 +421,11 @@ function cleanOne() {
     else {
       console.log("Cleaning number...");
       if (mode === "sqrt") {
-        for (i = 0; i < operation.length - 1; i++) {
+        for (let i = 0; i < operation.length - 1; i++) {
           rebuild += operation[i];
         }
       } else {
-        for (i = 0; i < operation.length - 1; i++) {
+        for (let i = 0; i < operation.length - 1; i++) {
           rebuild += operation[i];
         }
       }
@@ -475,7 +442,7 @@ function cleanOne() {
         console.log("Cleaning space");
       }
     }
-    screen.value = rebuild;
+    $display.value = rebuild;
 
     console.log("Result: <" + operation + ">");
   } else {
@@ -483,11 +450,11 @@ function cleanOne() {
   }
 }
 
-record.addEventListener("click", function () {
+$record.addEventListener("click", function () {
   if (recordOperation !== "") {
     let recordTemp = recordOperation;
     recordOperation = "";
-    cleanAll();
+    clearAll();
     for (let i = 0; i < recordTemp.length; i++) {
       if (recordTemp[i] === "√") {
         mode = "sqrt";
@@ -497,78 +464,6 @@ record.addEventListener("click", function () {
     }
     addValue(recordTemp);
     recordTemp += " ";
-    screen.value = recordTemp.split(" ").join("");
+    $display.value = recordTemp.split(" ").join("");
   }
-});
-
-document.addEventListener("keydown", (ev) => {
-  let key = ev.key;
-
-  switch (key) {
-    //Numbers
-    case "1":
-      getData(b1);
-      break;
-    case "2":
-      getData(b2);
-      break;
-    case "3":
-      getData(b3);
-      break;
-    case "4":
-      getData(b4);
-      break;
-    case "5":
-      getData(b5);
-      break;
-    case "6":
-      getData(b6);
-      break;
-    case "7":
-      getData(b7);
-      break;
-    case "8":
-      getData(b8);
-      break;
-    case "9":
-      getData(b9);
-      break;
-    case "0":
-      getData(b0);
-      break;
-
-    //Operators
-    case "+":
-      getData(bA);
-      break;
-    case "-":
-      getData(bS);
-      break;
-    case "*":
-      getData(bM);
-      break;
-    case "/":
-      getData(bD);
-      break;
-    case ".":
-      getData(bP);
-      break;
-    case "Enter":
-      calculateAll();
-      break;
-    case "Backspace":
-    case "Delete":
-      cleanOne();
-      break;
-    case "i":
-    case "I":
-    case "F1":
-      hide();
-      break;
-
-    default:
-      //console.log(key);
-      break;
-  }
-  scrFocus();
 });

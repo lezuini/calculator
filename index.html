@@ -6,42 +6,66 @@
     <title>Calculator</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" href="assets/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      img[src$="footer-powered-by-000webhost-white2.png"] {
+        display: none !important;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <div class="calculator">
-        <input type="text" readonly id="record" />
-        <input type="text" readonly id="screen" placeholder="0" />
-        <input type="button" value="CA" class="opaque" onclick="cleanAll()" />
-        <input type="button" value="C" onclick="cleanOne()" />
-        <input type="button" value="Info" onclick="hide()" />
-        <input type="button" id="b7" value="7" onclick="getData(this)" />
-        <input type="button" id="b8" value="8" onclick="getData(this)" />
-        <input type="button" id="b9" value="9" onclick="getData(this)" />
-        <input type="button" id="bD" value="/" onclick="getData(this)" />
-        <input type="button" value="√" onclick="getData(this)" />
-        <input type="button" id="b4" value="4" onclick="getData(this)" />
-        <input type="button" id="b5" value="5" onclick="getData(this)" />
-        <input type="button" id="b6" value="6" onclick="getData(this)" />
-        <input type="button" id="bM" value="x" onclick="getData(this)" />
-        <input type="button" value="^" onclick="getData(this)" />
-        <input type="button" id="b1" value="1" onclick="getData(this)" />
-        <input type="button" id="b2" value="2" onclick="getData(this)" />
-        <input type="button" id="b3" value="3" onclick="getData(this)" />
-        <input type="button" id="bS" value="-" onclick="getData(this)" />
-        <input
-          type="button"
-          value="="
-          class="opaque"
-          onclick="calculateAll()"
-        />
-        <input type="button" id="b0" value="0" onclick="getData(this)" />
-        <input type="button" id="bP" value="." onclick="getData(this)" />
-        <input type="button" id="bA" value="+" onclick="getData(this)" />
+    <script>
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    </script>
+    <div class="calculator">
+      <div class="record-container">
+        <textarea
+          readonly
+          id="record"
+          placeholder="0"
+          cols="30"
+          rows="3"
+        ></textarea>
       </div>
+      <div class="display-container">
+        <textarea
+          readonly
+          id="display"
+          placeholder="0"
+          cols="30"
+          rows="4"
+        ></textarea>
+      </div>
+      <button type="button" class="infoBtn">Info</button>
+      <button type="button" id="clear">C</button>
+      <button type="button" class="opaque" id="clearAll">CA</button>
+      <button type="button" id="seven">7</button>
+      <button type="button" id="eight">8</button>
+      <button type="button" id="nine">9</button>
+      <button type="button" id="multiply">x</button>
+      <button type="button" id="divide">/</button>
+      <button type="button" id="four">4</button>
+      <button type="button" id="five">5</button>
+      <button type="button" id="six">6</button>
+      <button type="button" id="subtract">-</button>
+      <button type="button" id="power">^</button>
+      <button type="button" id="one">1</button>
+      <button type="button" id="two">2</button>
+      <button type="button" id="three">3</button>
+      <button type="button" id="add">+</button>
+      <button type="button" class="opaque" id="equals">=</button>
+      <button type="button" id="zero">0</button>
+      <button type="button" id="decimal">.</button>
+      <button type="button" id="root">√</button>
     </div>
-    <div id="info" class="hide">
-      <input type="button" value="X" id="infoBtn" />
+
+    <!-- Info -->
+    <div id="info" class="hidden">
       <p>Hello user, this is my calculator.</p>
       <p>
         You can do operations with the operators: plus, minus, multiplication,
@@ -60,7 +84,8 @@
         <a href="https://twitter.com/leonardomeza87" target="_blank">Twitter</a
         >)
       </p>
+      <button type="button" class="infoBtn">Close</button>
     </div>
-    <script src="js/main.js"></script>
+    <script src="js/app.js" type="module"></script>
   </body>
 </html>

@@ -1,500 +1,268 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap");
-
 * {
-  font-family: "Quicksand", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+:root {
+  --body-bg-color: #031323;
+  /* --circle-color-1: #ffd000;
+  --circle-color-2: #ff0000;
+  --circle-color-3: #ff00dd;
+  --circle-color-4: #f50202;
+  --circle-color-5: #1928f5; */
+  --circle-color-1: #856c00;
+  --circle-color-2: #7c0000;
+  --circle-color-3: #880076;
+  --circle-color-4: #910000;
+  --circle-color-5: #0e168a;
+  --color-light-1: rgba(255, 255, 255, 0.05);
+  --color-light-2: rgba(255, 255, 255, 0.1);
+  --color-light-3: rgba(255, 255, 255, 0.2);
+  --color-dark-1: rgba(0, 0, 0, 0.2);
+  --text-color: #fff;
+  --text-color-record: #90979e;
+  --btn-active-1: #f71787;
+  --btn-active-2: #fc7840;
+  --a-color: #ff7a00;
+  --info-bg-color: rgba(16, 31, 46, 0.95);
+}
+
+html {
+  font-size: 16px;
 }
 
 body {
-  -webkit-display: flex;
   display: flex;
   width: 100%;
-  min-height: 100vh;
-  height: 100vh;
+  height: calc(var(--vh) * 100);
   justify-content: center;
   align-items: center;
-  background: #031323;
+  background-color: var(--body-bg-color);
 }
 
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(#ffd000, #ff0000, #ff00dd);
-  -webkit-clip-path: circle(20% at 25% 25%);
-  clip-path: circle(20% at 25% 25%);
-}
-
+body::before,
 body::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(#f50202, #1928f5);
-  -webkit-clip-path: circle(20% at 25% 25%);
+  height: calc(var(--vh, 1vh) * 100);
+  background: linear-gradient(
+    var(--circle-color-1),
+    var(--circle-color-2),
+    var(--circle-color-3)
+  );
+  clip-path: circle(20% at 25% 25%);
+}
+
+body::after {
+  background: linear-gradient(var(--circle-color-4), var(--circle-color-5));
   clip-path: circle(20% at 75% 75%);
 }
 
-.container {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.05);
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  overflow: hidden;
-  z-index: 10;
-  -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  -webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
-  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
-}
-
 .calculator {
-  position: relative;
-  -ms-display: grid;
+  position: absolute;
+  z-index: 10;
+  background-color: var(--color-light-1);
+  /* border-radius: 8px; */
+  overflow: hidden;
+  /* border-top: 1px solid var(--color-light-3); */
+  /* border-left: 1px solid var(--color-light-3); */
+  backdrop-filter: blur(16px);
+  box-shadow: 6px 6px 30px var(--color-dark-1);
   display: grid;
 }
 
-#record {
+.record-container,
+.display-container {
   grid-column: span 5;
-  height: 26px;
-  width: 230px;
-  text-align: right;
-  border: none;
-  outline: none;
-  padding: 11px 14px 0;
-  font-size: 15px;
-  line-height: 15px;
-  background: transparent;
-  color: #90979e;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  height: calc(var(--vh) * 100 / 8);
+  width: 100vw;
+  padding: 12px 16px;
+  border-right: 1px solid var(--color-light-1);
+  transition: background-color 0.5s ease;
   cursor: pointer;
-  -webkit-transition: background 0.5s ease;
-  -moz-transition: background 0.5s ease;
-  -ms-transition: background 0.5s ease;
-  -o-transition: background 0.5s ease;
-  transition: background 0.5s ease;
 }
 
-#record:hover {
-  -webkit-transition-duration: 0s;
-  -moz-transition-duration: 0s;
-  -ms-transition-duration: 0s;
-  -o-transition-duration: 0s;
+.record-container:hover {
   transition-duration: 0s;
-  background: rgba(255, 255, 255, 0.05);
+  background-color: var(--color-light-1);
 }
 
-#record:active {
-  background: rgba(255, 255, 255, 0.25);
+.record-container:active {
+  background-color: var(--color-light-3);
 }
 
-#screen {
-  grid-column: span 5;
-  height: 46px;
-  width: 230px;
+#record,
+#display {
   text-align: right;
   border: none;
   outline: none;
-  padding: 11px 13px;
-  font-size: 24px;
-  line-height: 24px;
-  background: transparent;
-  color: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  width: 100%;
+  font-size: 16px;
+  line-height: 16px;
+  padding-right: 8px;
+  color: var(--text-color-record);
+  background-color: transparent;
+  cursor: pointer;
+  resize: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-light-2) var(--color-light-1);
+}
+#record::-webkit-scrollbar,
+#display::-webkit-scrollbar {
+  width: 8px;
+}
+#record::-webkit-scrollbar-track,
+#display::-webkit-scrollbar-track {
+  background: var(--color-light-1);
+}
+#record::-webkit-scrollbar-thumb,
+#display::-webkit-scrollbar-thumb {
+  background: var(--color-light-2);
+  border: 1px solid transparent;
+}
+
+.display-container {
+  height: calc(var(--vh) * 100 / 8 * 2);
+  border-bottom: 1px solid var(--color-light-1);
+  padding: 016px;
   cursor: default;
 }
 
-input[type="button"] {
-  -ms-display: grid;
+#display {
+  font-size: 28px;
+  line-height: 28px;
+  color: var(--text-color);
+  cursor: default;
+}
+
+button {
   display: grid;
   align-items: center;
   justify-items: center;
-  height: 46px;
-  width: 46px;
-  color: #fff;
+  height: calc(var(--vh) * 100 / 8);
+  width: calc(100vw / 5);
+  color: var(--text-color);
   font-weight: 400;
   cursor: pointer;
-  font-size: 15px;
-  line-height: 15px;
-  background: transparent;
+  font-size: 16px;
+  line-height: 16px;
+  background-color: transparent;
   border: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  -webkit-transition: background 0.5s ease;
-  -moz-transition: background 0.5s ease;
-  -ms-transition: background 0.5s ease;
-  -o-transition: background 0.5s ease;
-  transition: background 0.5s ease;
+  border-bottom: 1px solid var(--color-light-1);
+  border-right: 1px solid var(--color-light-1);
+  transition: background-color 0.5s ease;
 }
 
-input[type="button"]:hover {
-  -webkit-transition-duration: 0s;
-  -moz-transition-duration: 0s;
-  -ms-transition-duration: 0s;
-  -o-transition-duration: 0s;
+button:hover {
   transition-duration: 0s;
-  background: rgba(255, 255, 255, 0.05);
+  background-color: var(--color-light-1);
 }
 
-input[type="button"]:active {
-  background-color: #f71787;
+button:active {
+  background-color: var(--btn-active-1);
   font-size: 20px;
   line-height: 20px;
   font-weight: 500;
 }
 
-input[value="0"],
-input[value="CA"],
-input[value="C"] {
+#zero,
+#clearAll,
+#clear {
   grid-column: span 2;
-  width: 92px;
+  width: calc(100vw / 5 * 2);
 }
 
-input[value="="] {
+#equals {
   grid-row: span 2;
-  height: 92px;
+  height: calc(var(--vh) * 100 / 8 * 2);
 }
 
-input[type="button"].opaque {
-  background: rgba(255, 255, 255, 0.05);
+button.opaque {
+  background-color: var(--color-light-1);
 }
 
-input[type="button"].opaque:hover {
-  background: rgba(255, 255, 255, 0.1);
+button.opaque:hover {
+  background-color: var(--color-light-2);
 }
 
-input[type="button"].opaque:active {
-  background: #fc7840;
+button.opaque:active {
+  background-color: var(--btn-active-2);
 }
 
 a {
   text-decoration: none;
-  color: #ff7a00;
+  color: var(--a-color);
 }
 
 #info {
   position: absolute;
-  background: rgba(16, 31, 46, 0.95);
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
+  background-color: var(--info-bg-color);
+  border-radius: 8px;
   overflow: hidden;
   z-index: 20;
-  -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  -webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
-  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--color-light-3);
+  border-left: 1px solid var(--color-light-3);
+  box-shadow: 6px 6px 30px var(--color-dark-1);
 
-  -webkit-display: flex;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-  height: 90%;
-  width: 90%;
+  height: calc(var(--vh) * 100 - 2rem);
+  width: calc(100% - 2rem);
   text-align: left;
   padding: 6%;
-  font-size: 15px;
-  line-height: 15px;
-  color: #fff;
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--text-color);
   cursor: default;
 }
 
-#info input + p {
+#info p {
+  width: 100%;
+  font-size: 15px;
+  line-height: 15px;
+}
+
+#info button + p {
   width: 80%;
   margin-right: auto;
 }
 
-#info input {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  -ms-display: grid;
+#info button {
   display: grid;
   align-items: center;
   justify-items: center;
-  height: 32px;
-  width: 32px;
-  color: #fff;
+  height: 42px;
+  width: 80%;
+  margin: 0 auto;
+  color: var(--text-color);
   font-weight: 400;
   cursor: pointer;
-  font-size: 12px;
-  line-height: 12px;
-  background: transparent;
+  font-size: 15px;
+  line-height: 15px;
+  background-color: transparent;
   border: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  -webkit-transition: background 0.5s ease;
-  -moz-transition: background 0.5s ease;
-  -ms-transition: background 0.5s ease;
-  -o-transition: background 0.5s ease;
-  transition: background 0.5s ease;
+  border: 1px solid var(--color-light-2);
+  border-top: 1px solid var(--color-light-3);
+  border-left: 1px solid var(--color-light-3);
+  border-radius: 8px;
+  transition: background-color 0.5s ease;
 }
 
-#info input:hover {
-  -webkit-transition-duration: 0s;
-  -moz-transition-duration: 0s;
-  -ms-transition-duration: 0s;
-  -o-transition-duration: 0s;
+#info button:hover {
   transition-duration: 0s;
-  background: rgba(255, 255, 255, 0.15);
+  background-color: var(--color-light-2);
 }
 
-.hide {
+.hidden {
   display: none !important;
-}
-
-@media screen and (min-height: 400px) and (min-width: 320px) {
-  #record {
-    height: 46px;
-    width: 270px;
-    padding: 11px 15px 0;
-    font-size: 16px;
-    line-height: 16px;
-  }
-  #screen {
-    height: 54px;
-    width: 270px;
-    padding: 0 17px 15px;
-    font-size: 24px;
-    line-height: 24px;
-  }
-  input[type="button"] {
-    height: 54px;
-    width: 54px;
-    font-size: 16px;
-    line-height: 16px;
-  }
-  input[type="button"]:active {
-    font-size: 20px;
-    line-height: 20px;
-  }
-  input[value="0"],
-  input[value="CA"],
-  input[value="C"] {
-    width: 108px;
-  }
-
-  input[value="="] {
-    height: 108px;
-  }
-  #info {
-    font-size: 16px;
-    line-height: 16px;
-  }
-  #info input {
-    height: 36px;
-    width: 36px;
-    font-size: 14px;
-    line-height: 14px;
-  }
-}
-
-@media screen and (min-height: 500px) and (min-width: 375px) {
-  #record {
-    height: 56px;
-    width: 320px;
-    font-size: 18px;
-    line-height: 18px;
-  }
-  #screen {
-    height: 64px;
-    width: 320px;
-    font-size: 28px;
-    line-height: 28px;
-  }
-  input[type="button"] {
-    height: 64px;
-    width: 64px;
-    font-size: 18px;
-    line-height: 18px;
-  }
-  input[type="button"]:active {
-    font-size: 24px;
-    line-height: 24px;
-  }
-  input[value="0"],
-  input[value="CA"],
-  input[value="C"] {
-    width: 128px;
-  }
-
-  input[value="="] {
-    height: 128px;
-  }
-  #info {
-    height: 80%;
-    font-size: 18px;
-    line-height: 18px;
-  }
-  #info input {
-    top: 14px;
-    right: 14px;
-    height: 40px;
-    width: 40px;
-    font-size: 16px;
-    line-height: 16px;
-  }
-}
-
-@media screen and (min-height: 540px) and (min-width: 425px) {
-  #record {
-    height: 56px;
-    width: 360px;
-    font-size: 20px;
-    line-height: 20px;
-  }
-  #screen {
-    height: 72px;
-    width: 360px;
-    font-size: 32px;
-    line-height: 32px;
-  }
-  input[type="button"] {
-    height: 72px;
-    width: 72px;
-    font-size: 20px;
-    line-height: 20px;
-  }
-  input[type="button"]:active {
-    font-size: 26px;
-    line-height: 26px;
-  }
-  input[value="0"],
-  input[value="CA"],
-  input[value="C"] {
-    width: 144px;
-  }
-
-  input[value="="] {
-    height: 144px;
-  }
-  #info {
-    font-size: 20px;
-    line-height: 20px;
-  }
-  #info input {
-    top: 16px;
-    right: 16px;
-    height: 44px;
-    width: 44px;
-  }
-}
-
-@media screen and (min-height: 620px) and (min-width: 520px) {
-  #record {
-    height: 56px;
-    width: 420px;
-    font-size: 24px;
-    line-height: 24px;
-  }
-  #screen {
-    height: 84px;
-    width: 420px;
-    font-size: 36px;
-    line-height: 36px;
-  }
-  input[type="button"] {
-    height: 84px;
-    width: 84px;
-    font-size: 24px;
-    line-height: 24px;
-  }
-  input[type="button"]:active {
-    font-size: 28px;
-    line-height: 28px;
-  }
-  input[value="0"],
-  input[value="CA"],
-  input[value="C"] {
-    width: 168px;
-  }
-
-  input[value="="] {
-    height: 168px;
-  }
-  #info {
-    height: 70%;
-    font-size: 24px;
-    line-height: 24px;
-  }
-  #info input {
-    top: 20px;
-    right: 20px;
-    height: 52px;
-    width: 52px;
-    font-size: 18px;
-    line-height: 18px;
-  }
-}
-
-@media screen and (min-height: 720px) and (min-width: 620px) {
-  #record {
-    height: 56px;
-    width: 460px;
-    font-size: 26px;
-    line-height: 26px;
-  }
-  #screen {
-    height: 92px;
-    width: 460px;
-    font-size: 40px;
-    line-height: 40px;
-  }
-  input[type="button"] {
-    height: 92px;
-    width: 92px;
-    font-size: 26px;
-    line-height: 26px;
-  }
-  input[type="button"]:active {
-    font-size: 30px;
-    line-height: 30px;
-  }
-  input[value="0"],
-  input[value="CA"],
-  input[value="C"] {
-    width: 184px;
-  }
-
-  input[value="="] {
-    height: 184px;
-  }
-  #info {
-    font-size: 26px;
-    line-height: 26px;
-  }
-  #info input {
-    top: 22px;
-    right: 22px;
-    height: 56px;
-    width: 56px;
-    font-size: 20px;
-    line-height: 20px;
-  }
 }
