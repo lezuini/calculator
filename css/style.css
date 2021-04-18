@@ -27,6 +27,8 @@
   --btn-active-2: #fc7840;
   --a-color: #ff7a00;
   --info-bg-color: rgba(16, 31, 46, 0.95);
+  --height: 100;
+  --width: 100vw;
 }
 
 html {
@@ -49,7 +51,7 @@ body::after {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh) * 100);
   background: linear-gradient(
     var(--circle-color-1),
     var(--circle-color-2),
@@ -67,22 +69,22 @@ body::after {
   position: absolute;
   z-index: 10;
   background-color: var(--color-light-1);
-  /* border-radius: 8px; */
+  /* border-radius: .5rem; */
   overflow: hidden;
-  /* border-top: 1px solid var(--color-light-3); */
-  /* border-left: 1px solid var(--color-light-3); */
-  backdrop-filter: blur(16px);
-  box-shadow: 6px 6px 30px var(--color-dark-1);
+  /* border-top: .0625rem solid var(--color-light-3); */
+  /* border-left: .0625rem solid var(--color-light-3); */
+  backdrop-filter: blur(1rem);
+  box-shadow: 0.375rem 0.375rem 1.875rem var(--color-dark-1);
   display: grid;
 }
 
 .record-container,
 .display-container {
   grid-column: span 5;
-  height: calc(var(--vh) * 100 / 8);
-  width: 100vw;
-  padding: 12px 16px;
-  border-right: 1px solid var(--color-light-1);
+  height: calc(var(--vh) * var(--height) / 8);
+  width: var(--width);
+  padding: 0.75rem 1rem;
+  border-right: 0.0625rem solid var(--color-light-1);
   transition: background-color 0.5s ease;
   cursor: pointer;
 }
@@ -102,9 +104,10 @@ body::after {
   border: none;
   outline: none;
   width: 100%;
-  font-size: 16px;
-  line-height: 16px;
-  padding-right: 8px;
+  height: 100%;
+  font-size: 1rem;
+  line-height: 1rem;
+  padding-right: 0.5rem;
   color: var(--text-color-record);
   background-color: transparent;
   cursor: pointer;
@@ -114,7 +117,7 @@ body::after {
 }
 #record::-webkit-scrollbar,
 #display::-webkit-scrollbar {
-  width: 8px;
+  width: 0.5rem;
 }
 #record::-webkit-scrollbar-track,
 #display::-webkit-scrollbar-track {
@@ -123,19 +126,19 @@ body::after {
 #record::-webkit-scrollbar-thumb,
 #display::-webkit-scrollbar-thumb {
   background: var(--color-light-2);
-  border: 1px solid transparent;
+  border: 0.0625rem solid transparent;
 }
 
 .display-container {
-  height: calc(var(--vh) * 100 / 8 * 2);
-  border-bottom: 1px solid var(--color-light-1);
-  padding: 016px;
+  height: calc(var(--vh) * var(--height) / 8 * 2);
+  border-bottom: 0.0625rem solid var(--color-light-1);
+  padding: 1rem;
   cursor: default;
 }
 
 #display {
-  font-size: 28px;
-  line-height: 28px;
+  font-size: 1.75rem;
+  line-height: 1.75rem;
   color: var(--text-color);
   cursor: default;
 }
@@ -144,18 +147,18 @@ button {
   display: grid;
   align-items: center;
   justify-items: center;
-  height: calc(var(--vh) * 100 / 8);
-  width: calc(100vw / 5);
+  height: calc(var(--vh) * var(--height) / 8);
+  width: calc(var(--width) / 5);
   color: var(--text-color);
   font-weight: 400;
   cursor: pointer;
-  font-size: 16px;
-  line-height: 16px;
+  font-size: 1rem;
+  line-height: 1rem;
   background-color: transparent;
   border: none;
   user-select: none;
-  border-bottom: 1px solid var(--color-light-1);
-  border-right: 1px solid var(--color-light-1);
+  border-bottom: 0.0625rem solid var(--color-light-1);
+  border-right: 0.0625rem solid var(--color-light-1);
   transition: background-color 0.5s ease;
 }
 
@@ -166,8 +169,8 @@ button:hover {
 
 button:active {
   background-color: var(--btn-active-1);
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
   font-weight: 500;
 }
 
@@ -175,12 +178,12 @@ button:active {
 #clearAll,
 #clear {
   grid-column: span 2;
-  width: calc(100vw / 5 * 2);
+  width: calc(var(--width) / 5 * 2);
 }
 
 #equals {
   grid-row: span 2;
-  height: calc(var(--vh) * 100 / 8 * 2);
+  height: calc(var(--vh) * var(--height) / 8 * 2);
 }
 
 button.opaque {
@@ -203,32 +206,32 @@ a {
 #info {
   position: absolute;
   background-color: var(--info-bg-color);
-  border-radius: 8px;
+  border-radius: 0.5rem;
   overflow: hidden;
   z-index: 20;
-  backdrop-filter: blur(16px);
-  border-top: 1px solid var(--color-light-3);
-  border-left: 1px solid var(--color-light-3);
-  box-shadow: 6px 6px 30px var(--color-dark-1);
+  backdrop-filter: blur(1rem);
+  border-top: 0.0625rem solid var(--color-light-3);
+  border-left: 0.0625rem solid var(--color-light-3);
+  box-shadow: 0.375rem 0.375rem 1.875rem var(--color-dark-1);
 
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-  height: calc(var(--vh) * 100 - 2rem);
-  width: calc(100% - 2rem);
+  height: calc(var(--vh) * var(--height) - 2rem);
+  width: calc(var(--width) - 2rem);
   text-align: left;
   padding: 6%;
-  font-size: 16px;
-  line-height: 16px;
+  font-size: 1rem;
+  line-height: 1rem;
   color: var(--text-color);
   cursor: default;
 }
 
 #info p {
   width: 100%;
-  font-size: 15px;
-  line-height: 15px;
+  font-size: 0.9375rem;
+  line-height: 0.9375rem;
 }
 
 #info button + p {
@@ -240,21 +243,21 @@ a {
   display: grid;
   align-items: center;
   justify-items: center;
-  height: 42px;
+  height: 2.625rem;
   width: 80%;
   margin: 0 auto;
   color: var(--text-color);
   font-weight: 400;
   cursor: pointer;
-  font-size: 15px;
-  line-height: 15px;
+  font-size: 0.9375rem;
+  line-height: 0.9375rem;
   background-color: transparent;
   border: none;
   user-select: none;
-  border: 1px solid var(--color-light-2);
-  border-top: 1px solid var(--color-light-3);
-  border-left: 1px solid var(--color-light-3);
-  border-radius: 8px;
+  border: 0.0625rem solid var(--color-light-2);
+  border-top: 0.0625rem solid var(--color-light-3);
+  border-left: 0.0625rem solid var(--color-light-3);
+  border-radius: 0.5rem;
   transition: background-color 0.5s ease;
 }
 
@@ -265,4 +268,145 @@ a {
 
 .hidden {
   display: none !important;
+}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 360px) {
+  html {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 400px) {
+  html {
+    font-size: 22px;
+  }
+}
+@media screen and (min-width: 480px) {
+  :root {
+    --height: 90;
+    --width: 80vw;
+  }
+
+  html {
+    font-size: 20px;
+  }
+
+  .calculator {
+    border-radius: 0.5rem;
+    border-top: 0.0625rem solid var(--color-light-3);
+    border-left: 0.0625rem solid var(--color-light-3);
+    width: var(--width);
+    height: calc(var(--vh) * var(--height));
+  }
+  #info {
+    width: calc(var(--width) * 1.2);
+  }
+}
+@media screen and (min-width: 480px) and (min-height: 800px) {
+  :root {
+    --height: 80;
+  }
+}
+@media screen and (min-width: 480px) and (min-height: 900px) {
+  :root {
+    --height: 70;
+  }
+}
+
+@media screen and (min-width: 480px) and (min-height: 1000px) {
+  :root {
+    --height: 65;
+  }
+}
+@media screen and (min-width: 480px) and (min-height: 1100px) {
+  :root {
+    --height: 60;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  :root {
+    --width: 70vw;
+  }
+}
+@media screen and (min-width: 680px) {
+  :root {
+    --width: 65vw;
+  }
+}
+@media screen and (min-width: 760px) {
+  :root {
+    --width: 60vw;
+  }
+}
+
+@media screen and (min-width: 840px) {
+  :root {
+    --width: 55vw;
+  }
+}
+@media screen and (min-width: 920px) {
+  :root {
+    --width: 50vw;
+  }
+}
+@media screen and (min-width: 1000px) {
+  :root {
+    --width: 45vw;
+  }
+}
+@media screen and (min-width: 1080px) {
+  :root {
+    --width: 40vw;
+  }
+}
+@media screen and (min-width: 1160px) {
+  :root {
+    --width: 35vw;
+  }
+}
+@media screen and (min-width: 1400px) {
+  :root {
+    --width: 30vw;
+  }
+  html {
+    font-size: 22px;
+  }
+}
+@media screen and (min-width: 1640px) {
+  :root {
+    --width: 25vw;
+  }
+}
+@media screen and (min-width: 1920px) {
+  :root {
+    --width: 30vw;
+  }
+}
+@media screen and (min-width: 1920px) and (min-height: 1080px) {
+  :root {
+    --height: 70;
+  }
+  html {
+    font-size: 24px;
+  }
+}
+@media screen and (min-width: 2800px) and (min-height: 1600px) {
+  html {
+    font-size: 28px;
+  }
+}
+@media screen and (min-width: 3200px) and (min-height: 1900px) {
+  html {
+    font-size: 32px;
+  }
+}
+@media screen and (min-width: 3600px) and (min-height: 2000px) {
+  html {
+    font-size: 40px;
+  }
 }
