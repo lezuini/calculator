@@ -5,13 +5,8 @@
   font-family: "Quicksand", sans-serif;
 }
 
-:root {
+:root.dark {
   --body-bg-color: #031323;
-  /* --circle-color-1: #ffd000;
-  --circle-color-2: #ff0000;
-  --circle-color-3: #ff00dd;
-  --circle-color-4: #f50202;
-  --circle-color-5: #1928f5; */
   --circle-color-1: #856c00;
   --circle-color-2: #7c0000;
   --circle-color-3: #880076;
@@ -24,11 +19,33 @@
   --text-color: #fff;
   --text-color-record: #90979e;
   --btn-active-1: #f71787;
-  --btn-active-2: #fc7840;
+  --btn-active-2: #ff3c00;
   --a-color: #ff7a00;
   --info-bg-color: rgba(16, 31, 46, 0.95);
   --height: 100;
   --width: 100vw;
+  --font-weight: 400;
+}
+:root {
+  --body-bg-color: #f4f4f4;
+  --circle-color-1: #ffd000;
+  --circle-color-2: #ff0000;
+  --circle-color-3: #ff00dd;
+  --circle-color-4: #f50202;
+  --circle-color-5: #1928f5;
+  --color-light-1: rgba(0, 0, 0, 0.05);
+  --color-light-2: rgba(0, 0, 0, 0.1);
+  --color-light-3: rgba(0, 0, 0, 0.2);
+  --color-dark-1: rgba(0, 0, 0, 0.2);
+  --text-color: #111;
+  --text-color-record: #444;
+  --btn-active-1: #f71787;
+  --btn-active-2: #ff3c00;
+  --a-color: #ff3c00;
+  --info-bg-color: rgba(240, 240, 240, 0.9);
+  --height: 100;
+  --width: 100vw;
+  --font-weight: 500;
 }
 
 html {
@@ -150,7 +167,7 @@ button {
   height: calc(var(--vh) * var(--height) / 8);
   width: calc(var(--width) / 5);
   color: var(--text-color);
-  font-weight: 400;
+  font-weight: var(--font-weight);
   cursor: pointer;
   font-size: 1rem;
   line-height: 1rem;
@@ -232,9 +249,10 @@ a {
   width: 100%;
   font-size: 0.9375rem;
   line-height: 0.9375rem;
+  font-weight: var(--font-weight);
 }
 
-#info button + p {
+#info p:first-child {
   width: 80%;
   margin-right: auto;
 }
@@ -251,7 +269,7 @@ a {
   cursor: pointer;
   font-size: 0.9375rem;
   line-height: 0.9375rem;
-  background-color: transparent;
+  background-color: var(--color-light-1);
   border: none;
   user-select: none;
   border: 0.0625rem solid var(--color-light-2);
@@ -286,7 +304,8 @@ a {
   }
 }
 @media screen and (min-width: 480px) {
-  :root {
+  :root,
+  :root.dark {
     --height: 90;
     --width: 80vw;
   }
@@ -307,70 +326,83 @@ a {
   }
 }
 @media screen and (min-width: 480px) and (min-height: 800px) {
-  :root {
+  :root,
+  :root.dark {
     --height: 80;
   }
 }
 @media screen and (min-width: 480px) and (min-height: 900px) {
-  :root {
+  :root,
+  :root.dark {
     --height: 70;
   }
 }
 
 @media screen and (min-width: 480px) and (min-height: 1000px) {
-  :root {
+  :root,
+  :root.dark {
     --height: 65;
   }
 }
 @media screen and (min-width: 480px) and (min-height: 1100px) {
-  :root {
+  :root,
+  :root.dark {
     --height: 60;
   }
 }
 
 @media screen and (min-width: 600px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 70vw;
   }
 }
 @media screen and (min-width: 680px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 65vw;
   }
 }
 @media screen and (min-width: 760px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 60vw;
   }
 }
 
 @media screen and (min-width: 840px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 55vw;
   }
 }
 @media screen and (min-width: 920px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 50vw;
   }
 }
 @media screen and (min-width: 1000px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 45vw;
   }
 }
 @media screen and (min-width: 1080px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 40vw;
   }
 }
 @media screen and (min-width: 1160px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 35vw;
   }
 }
 @media screen and (min-width: 1400px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 30vw;
   }
   html {
@@ -378,17 +410,20 @@ a {
   }
 }
 @media screen and (min-width: 1640px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 25vw;
   }
 }
 @media screen and (min-width: 1920px) {
-  :root {
+  :root,
+  :root.dark {
     --width: 30vw;
   }
 }
 @media screen and (min-width: 1920px) and (min-height: 1080px) {
-  :root {
+  :root,
+  :root.dark {
     --height: 70;
   }
   html {

@@ -19,8 +19,25 @@
   </head>
   <body>
     <script>
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
+      const w = window,
+        d = document,
+        de = d.documentElement,
+        storage = w.localStorage;
+
+      let vh = w.innerHeight * 0.01;
+      de.style.setProperty("--vh", `${vh}px`);
+
+      if (storage.getItem("theme") === null) {
+        const mediaQueryList = w.matchMedia("(prefers-color-scheme: light)");
+
+        if (mediaQueryList.matches) {
+          de.classList.add("light");
+        } else {
+          de.classList.add("dark");
+        }
+      } else {
+        de.classList.add(`${storage.getItem("theme")}`);
+      }
     </script>
     <div class="calculator">
       <div class="record-container">
@@ -69,7 +86,7 @@
       <p>Hello user, this is my calculator.</p>
       <p>
         You can do operations with the operators: plus, minus, multiplication,
-        division and power.
+        division and power simultaneously.
       </p>
       <p>
         You can only enter the root function if you enter it first, and it is
@@ -84,6 +101,7 @@
         <a href="https://twitter.com/leonardomeza87" target="_blank">Twitter</a
         >)
       </p>
+      <button type="button" id="themeBtn">Switch to Light Theme</button>
       <button type="button" class="infoBtn">Close</button>
     </div>
     <script src="js/app.js" type="module"></script>

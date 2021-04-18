@@ -1,11 +1,9 @@
 import inputs from "./inputs.js";
 import correctHeight from "./correct-height.js";
 import info from "./info.js";
+import switchTheme from "./switchTheme.js";
 
 correctHeight();
-inputs();
-// keyboard();
-info();
 
 const d = document,
   w = window,
@@ -18,11 +16,17 @@ export function displayFocus() {
   $display.focus();
 }
 
+w.addEventListener("DOMContentLoaded", () => {
+  inputs();
+  info();
+  switchTheme();
+});
+
 let operation = "";
 let symbol = false;
 let mode = "normal";
 let dot = false;
-let recordOperation = "";
+let savedOperation = "";
 
 //Testing zone
 
@@ -78,6 +82,15 @@ export function calculateAll() {
       if (isNaN(operation[operation.length - 2])) {
         if (operation[operation.length - 2] === ".") {
           rebuild = operation + " ";
+        }
+        //The penultimate element is a "e"
+        else if (operation[operation.length - 2] === "e") {
+          for (let i = 0; i < operation.length - 2; i++) {
+            rebuild += operation[i];
+          }
+          rebuild += " ";
+          symbol = false;
+          dot = false;
         } else {
           for (let i = 0; i < operation.length - 2; i++) {
             rebuild += operation[i];
@@ -132,7 +145,7 @@ export function calculateAll() {
   let j = 0;
 
   //Save operation in history
-  recordOperation = result.join(" ");
+  savedOperation = result.join(" ");
   let recordValue = result.join("");
 
   //Normal mode
@@ -385,6 +398,7 @@ export function clearAll() {
   $record.value = "";
   $display.value = "";
   operation = "";
+  savedOperation = "";
   symbol = false;
   mode = "normal";
   dot = false;
@@ -451,9 +465,9 @@ export function clear() {
 }
 
 $record.addEventListener("click", function () {
-  if (recordOperation !== "") {
-    let recordTemp = recordOperation;
-    recordOperation = "";
+  if (savedOperation !== "") {
+    let recordTemp = savedOperation;
+    savedOperation = "";
     clearAll();
     for (let i = 0; i < recordTemp.length; i++) {
       if (recordTemp[i] === "√") {
