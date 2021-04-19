@@ -72,7 +72,7 @@ export default function inputs() {
         clear();
         break;
       case $clearAll:
-        clearAll();
+        clearAll(true);
         break;
       case $add:
         enterEntry(btn);
@@ -161,7 +161,7 @@ export default function inputs() {
       case "Backspace":
       case "Delete":
         if (e.ctrlKey || e.altKey) {
-          clearAll();
+          clearAll(true);
         } else {
           clear();
         }

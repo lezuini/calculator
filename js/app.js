@@ -294,10 +294,11 @@ export function enterEntry(btn) {
     else if (input === "√") {
       mode = "sqrt";
       setValue(input);
-    }
-    /* else if (input === "-"){
+    } else if (input === "-") {
+      symbol = true;
+      setValue("0");
       setValue(input);
-    } */
+    }
   }
   //If it is not the first entry
   else {
@@ -363,9 +364,18 @@ function setValue(value) {
     }
     //Is a dot
     else if (value === ".") {
-      if (dot === false) {
-        dot = true;
-        addValue(value);
+      if (mode === "sqrt") {
+        if (operation.length !== 2) {
+          if (dot === false) {
+            dot = true;
+            addValue(value);
+          }
+        }
+      } else {
+        if (dot === false) {
+          dot = true;
+          addValue(value);
+        }
       }
     }
     //Is a symbol
@@ -394,11 +404,13 @@ function addValue(entry, isSymbol) {
 }
 
 //Clean everything
-export function clearAll() {
+export function clearAll(deleteHistory) {
   $record.value = "";
   $display.value = "";
   operation = "";
-  savedOperation = "";
+  if (deleteHistory) {
+    savedOperation = "";
+  }
   symbol = false;
   mode = "normal";
   dot = false;
