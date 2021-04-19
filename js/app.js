@@ -8,7 +8,8 @@ correctHeight();
 const d = document,
   w = window,
   $record = d.getElementById("record"),
-  $display = d.getElementById("display");
+  $display = d.getElementById("display"),
+  E = 2.71828;
 
 window.onload = displayFocus();
 
@@ -71,7 +72,9 @@ function refine(Value) {
 clearAll();
 
 export function calculateAll() {
-  let rebuild = "";
+  let rebuild = "",
+    result = "",
+    exclusiveOperation = "";
 
   //Rebuilding the operation for its transformation into an array
   //Normal mode
@@ -83,11 +86,24 @@ export function calculateAll() {
         if (operation[operation.length - 2] === ".") {
           rebuild = operation + " ";
         }
-        //The penultimate element is a "e"
+        //The penultimate element is an "e"
         else if (operation[operation.length - 2] === "e") {
           for (let i = 0; i < operation.length - 2; i++) {
             rebuild += operation[i];
           }
+          exclusiveOperation = operation + " ";
+
+          rebuild *= E;
+          rebuild += " ";
+          symbol = false;
+          dot = false;
+        } else if (operation[operation.length - 3] === "e") {
+          for (let i = 0; i < operation.length - 3; i++) {
+            rebuild += operation[i];
+          }
+          exclusiveOperation = operation + " ";
+
+          rebuild *= Math.pow(10, Number(operation[operation.length - 1]));
           rebuild += " ";
           symbol = false;
           dot = false;
@@ -99,14 +115,29 @@ export function calculateAll() {
           dot = false;
         }
       }
-      //The last element is a dot
+      //The last element is a dot or an "e"
       else if (isNaN(operation[operation.length - 1])) {
-        for (let i = 0; i < operation.length - 1; i++) {
-          rebuild += operation[i];
+        //The last element is a dot
+        if (operation[operation.length - 1] === ".") {
+          for (let i = 0; i < operation.length - 1; i++) {
+            rebuild += operation[i];
+          }
+          rebuild += " ";
+          symbol = false;
+          dot = false;
         }
-        rebuild += " ";
-        symbol = false;
-        dot = false;
+        //The last element is an "e"
+        else if (operation[operation.length - 1] === "e") {
+          for (let i = 0; i < operation.length - 1; i++) {
+            rebuild += operation[i];
+          }
+          exclusiveOperation = operation + " ";
+
+          rebuild = rebuild * E;
+          rebuild += " ";
+          symbol = false;
+          dot = false;
+        }
       }
       //The last element is a number
       else {
@@ -121,7 +152,6 @@ export function calculateAll() {
   //Root mode
   else {
     if (isNaN(operation[operation.length - 1])) {
-      // console.log("d");
       for (let i = 0; i < operation.length - 1; i++) {
         rebuild += operation[i];
       }
@@ -133,7 +163,7 @@ export function calculateAll() {
   console.log("Rebuild: <" + rebuild + ">");
 
   //Convert operation to array
-  let result = rebuild.split(" ");
+  result = rebuild.split(" ");
   //Remove excess
   result.pop();
   console.log(result);
@@ -145,8 +175,8 @@ export function calculateAll() {
   let j = 0;
 
   //Save operation in history
-  savedOperation = result.join(" ");
-  let recordValue = result.join("");
+  savedOperation = exclusiveOperation.split(" ").join(" ") || result.join(" ");
+  let recordValue = exclusiveOperation.split(" ").join("") || result.join("");
 
   //Normal mode
   if (mode === "normal") {
