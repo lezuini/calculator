@@ -1,3 +1,9 @@
+/*
+  - Calculator (https://github.com/leonardomeza87/calculator)
+  - Author: Leonardo Meza (https://github.com/leonardomeza87)
+  - Twitter: (https://twitter.com/leonardomeza87)
+*/
+
 import inputs from "./inputs.js";
 import correctHeight from "./correct-height.js";
 import info from "./info.js";
