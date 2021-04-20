@@ -1,7 +1,8 @@
 import inputs from "./inputs.js";
 import correctHeight from "./correct-height.js";
 import info from "./info.js";
-import switchTheme from "./switchTheme.js";
+import switchTheme from "./switch-theme.js";
+import serviceWorker from "./service-worker.js";
 
 correctHeight();
 
@@ -21,6 +22,7 @@ w.addEventListener("DOMContentLoaded", () => {
   inputs();
   info();
   switchTheme();
+  serviceWorker();
 });
 
 let operation = "";
@@ -311,7 +313,7 @@ export function calculateAll() {
 
 //Get input value
 export function enterEntry(btn) {
-  let input = btn;
+  let input = btn.trim();
   // console.log(operation.length);
 
   //If it is the first entry

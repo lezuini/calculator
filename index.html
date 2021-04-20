@@ -4,8 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@leonardomeza87" />
+    <meta
+      name="description"
+      content="This calculator is even better than
+    windows one! Calculates 2 + 2 and more, division, multiplication, power and
+    root. And it also has dark mode!"
+    />
+
+    <meta name="theme-color" content="#031323" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.xnor.tk/calculator/" />
+    <meta property="og:title" content="Calculator" />
+    <meta
+      property="og:description"
+      content="This calculator is even better than windows one! Calculates 2 + 2 and more, division, multiplication, power and root. And it also has dark mode!"
+    />
+    <meta property="og:site_name" content="XNOR" />
+    <meta
+      property="og:image"
+      content="https://www.xnor.tk/calculator/assets/preview.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="628" />
+
+    <link rel="manifest" href="manifest.json" />
+
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="icon" href="assets/favicon.png" />
+    <link rel="shortcut icon" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/favicon.png" />
+    <link rel="apple-touch-startup-image" href="assets/favicon.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap"
@@ -40,7 +78,7 @@
       }
     </script>
     <div class="calculator">
-      <div class="record-container">
+      <div class="record-container" title="Record">
         <textarea
           readonly
           id="record"
@@ -58,27 +96,46 @@
           rows="4"
         ></textarea>
       </div>
-      <button type="button" class="infoBtn secondary">Info</button>
-      <button type="button" id="clear" class="secondary">C</button>
-      <button type="button" id="clearAll" class="opaque primary">CA</button>
-      <button type="button" id="seven">7</button>
-      <button type="button" id="eight">8</button>
-      <button type="button" id="nine">9</button>
-      <button type="button" id="multiply" class="primary">x</button>
-      <button type="button" id="divide" class="primary">/</button>
-      <button type="button" id="four">4</button>
-      <button type="button" id="five">5</button>
-      <button type="button" id="six">6</button>
-      <button type="button" id="subtract" class="primary">-</button>
-      <button type="button" id="power" class="primary">^</button>
-      <button type="button" id="one">1</button>
-      <button type="button" id="two">2</button>
-      <button type="button" id="three">3</button>
-      <button type="button" id="add" class="primary">+</button>
-      <button type="button" id="equals" class="opaque primary">=</button>
-      <button type="button" id="zero">0</button>
-      <button type="button" id="decimal">.</button>
-      <button type="button" id="root" class="primary">√</button>
+      <button type="button" title="Information" class="infoBtn secondary">
+        Info
+      </button>
+      <button type="button" title="Clear" id="clear" class="secondary">
+        C
+      </button>
+      <button
+        type="button"
+        title="Clear ALL"
+        id="clearAll"
+        class="opaque primary"
+      >
+        CA
+      </button>
+      <button type="button" title="Seven" id="seven">7</button>
+      <button type="button" title="Eight" id="eight">8</button>
+      <button type="button" title="Nine" id="nine">9</button>
+      <button type="button" title="Multiply" id="multiply" class="primary">
+        x
+      </button>
+      <button type="button" title="Divide" id="divide" class="primary">
+        /
+      </button>
+      <button type="button" title="Four" id="four">4</button>
+      <button type="button" title="Five" id="five">5</button>
+      <button type="button" title="Six" id="six">6</button>
+      <button type="button" title="Subtract" id="subtract" class="primary">
+        -
+      </button>
+      <button type="button" title="Power" id="power" class="primary">^</button>
+      <button type="button" title="One" id="one">1</button>
+      <button type="button" title="Two" id="two">2</button>
+      <button type="button" title="Three" id="three">3</button>
+      <button type="button" title="Add" id="add" class="primary">+</button>
+      <button type="button" title="Equals" id="equals" class="opaque primary">
+        =
+      </button>
+      <button type="button" title="Zero" id="zero">0</button>
+      <button type="button" title="Decimal" id="decimal">.</button>
+      <button type="button" title="Root" id="root" class="primary">√</button>
     </div>
 
     <!-- Info -->

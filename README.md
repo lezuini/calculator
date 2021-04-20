@@ -6,7 +6,7 @@ You can also solve square roots 🌱 but this mode is not compatible with the ot
 
 All operations support decimals, and display results up to 4 decimal places 👌
 
-![Screenshot](assets/screenshot.png)
+![Screenshot](assets/preview.png)
 
 ## Demo 🚀
 
