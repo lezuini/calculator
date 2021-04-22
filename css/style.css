@@ -197,12 +197,19 @@ button {
   transition: background-color 0.5s ease;
 }
 
+button:active,
+button:hover,
+button:focus {
+  outline: 0;
+}
+
 button:hover {
   transition-duration: 0s;
   background-color: var(--color-light-1);
 }
 
 button:active {
+  transition-duration: 0s;
   background-color: var(--btn-active-1);
   font-size: 1.25rem;
   line-height: 1.25rem;

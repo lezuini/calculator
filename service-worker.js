@@ -1,4 +1,4 @@
-//Asignar un nombre y version al cache
+//Assign a name and version to the cache
 const CACHE_NAME = "v1_calculator",
   urlsToCache = [
     "./",
@@ -22,7 +22,7 @@ const CACHE_NAME = "v1_calculator",
     "./assets/favicon_1024.png",
   ];
 
-//Durante la fase de istalacion, generalmente se almacena en cache los activos estaticos
+//During the installation phase, static assets are generally cached
 self.addEventListener("install", (e) => {
   e.waitUntil(
     caches
@@ -34,7 +34,7 @@ self.addEventListener("install", (e) => {
   );
 });
 
-//Una vez que se instala el SW, se activa y busca los recursos para hacer que funcione sin conexion
+//Once the service worker is installed, it wakes up and searches for resources to make it work offline
 self.addEventListener("activate", (e) => {
   const cacheWhitelist = [CACHE_NAME];
 
@@ -44,29 +44,29 @@ self.addEventListener("activate", (e) => {
       .then((cacheNames) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
-            //Eliminamos lo que ya no se necesita en cache
+            //We remove what is no longer needed in cache
             if (cacheWhitelist.indexOf(cacheName) === -1) {
               return caches.delete(cacheName);
             }
           })
         );
       })
-      // Le indica al SW activar el cache actual
+      //Tells the service worker to activate the current cache
       .then(() => self.clients.claim())
   );
 });
 
-//Cuando el navegador recupera una url
+//When the browser retrieves a url
 self.addEventListener("fetch", (e) => {
-  //Responder ya sea con el objeto en cache o continuar y buscar la url real
+  //Respond either with the cached object or go ahead and find the actual url
   e.respondWith(
     caches.match(e.request).then((res) => {
       if (res) {
-        //Recuperar del cache
+        //Recover from cache
         return res;
       }
 
-      //Recuperar de la peticin a la url
+      //Retrieve from request to url
       return fetch(e.request);
     })
   );

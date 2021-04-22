@@ -6,6 +6,8 @@ You can also solve square roots 🌱 but this mode is not compatible with the ot
 
 All operations support decimals, and display results up to 4 decimal places 👌
 
+_Keyboard keys are supported on PC_
+
 ![Screenshot](assets/preview.png)
 
 ## Demo 🚀
@@ -13,6 +15,8 @@ All operations support decimals, and display results up to 4 decimal places 👌
 _You can open this link on both desktop and mobile._
 
 [https://leonardomeza87.github.io/calculator/](https://leonardomeza87.github.io/calculator/)
+
+You can install this app on your device as a Progressive Web App!
 
 ## Download ⚙️
 

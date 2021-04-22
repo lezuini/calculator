@@ -8,7 +8,7 @@ import inputs from "./inputs.js";
 import correctHeight from "./correct-height.js";
 import info from "./info.js";
 import switchTheme from "./switch-theme.js";
-import serviceWorker from "./service-worker.js";
+import SWinstaller from "./sw-installer.js";
 
 correctHeight();
 
@@ -28,7 +28,7 @@ w.addEventListener("DOMContentLoaded", () => {
   inputs();
   info();
   switchTheme();
-  serviceWorker();
+  SWinstaller();
 });
 
 let operation = "";
