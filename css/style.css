@@ -11,34 +11,8 @@
   font-family: "Quicksand", sans-serif;
 }
 
-:root.dark {
-  --body-bg-color: #031323;
-  --circle-color-1: #b99700;
-  --circle-color-2: #a70000;
-  --circle-color-3: #a70090;
-  --circle-color-4: #a70000;
-  --circle-color-5: #121ca8;
-  --color-light-1: rgba(255, 255, 255, 0.05);
-  --color-light-2: rgba(255, 255, 255, 0.1);
-  --color-light-3: rgba(255, 255, 255, 0.2);
-  --color-dark-1: rgba(0, 0, 0, 0.2);
-  --text-color: #fff;
-  --text-color-record: #e2e2e2;
-  --btn-active-1: #f71787;
-  --btn-active-2: #ff3c00;
-  --a-color: #ff7a00;
-  --info-bg-color: rgba(16, 31, 46, 0.95);
-  --height: 100;
-  --width: 100vw;
-  --font-weight: 400;
-  --primary: #0084ff41;
-  --secondary: #1b8dff13;
-  --primary-hover: #0084ff60;
-  --secondary-hover: #1b8dff23;
-  --primary-o: #0084ff56;
-  --primary-o-hover: #0084ff71;
-}
-:root {
+:root,
+:root.theme--light {
   --body-bg-color: #f4f4f4;
   --circle-color-1: #ffd000;
   --circle-color-2: #ff0000;
@@ -64,6 +38,34 @@
   --secondary-hover: #00a2ff27;
   --primary-o: #00a2ff56;
   --primary-o-hover: #00a2ff75;
+}
+
+:root.theme--dark {
+  --body-bg-color: #031323;
+  --circle-color-1: #b99700;
+  --circle-color-2: #a70000;
+  --circle-color-3: #a70090;
+  --circle-color-4: #a70000;
+  --circle-color-5: #121ca8;
+  --color-light-1: rgba(255, 255, 255, 0.05);
+  --color-light-2: rgba(255, 255, 255, 0.1);
+  --color-light-3: rgba(255, 255, 255, 0.2);
+  --color-dark-1: rgba(0, 0, 0, 0.2);
+  --text-color: #fff;
+  --text-color-record: #e2e2e2;
+  --btn-active-1: #f71787;
+  --btn-active-2: #ff3c00;
+  --a-color: #ff7a00;
+  --info-bg-color: rgba(16, 31, 46, 0.95);
+  --height: 100;
+  --width: 100vw;
+  --font-weight: 400;
+  --primary: #0084ff41;
+  --secondary: #1b8dff13;
+  --primary-hover: #0084ff60;
+  --secondary-hover: #1b8dff23;
+  --primary-o: #0084ff56;
+  --primary-o-hover: #0084ff71;
 }
 
 html {
@@ -271,6 +273,9 @@ a {
   border-left: 0.0625rem solid var(--color-light-3);
   box-shadow: 0.375rem 0.375rem 1.875rem var(--color-dark-1);
 
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -327,6 +332,9 @@ a {
 .hidden {
   display: none !important;
 }
+.show {
+  opacity: 1 !important;
+}
 
 @media screen and (min-width: 320px) {
   html {
@@ -345,7 +353,8 @@ a {
 }
 @media screen and (min-width: 480px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --height: 90;
     --width: 80vw;
   }
@@ -375,82 +384,95 @@ a {
 }
 @media screen and (min-width: 480px) and (min-height: 800px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --height: 80;
   }
 }
 @media screen and (min-width: 480px) and (min-height: 900px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --height: 70;
   }
 }
 
 @media screen and (min-width: 480px) and (min-height: 1000px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --height: 65;
   }
 }
 @media screen and (min-width: 480px) and (min-height: 1100px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --height: 60;
   }
 }
 
 @media screen and (min-width: 600px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 70vw;
   }
 }
 @media screen and (min-width: 680px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 65vw;
   }
 }
 @media screen and (min-width: 760px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 60vw;
   }
 }
 
 @media screen and (min-width: 840px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 55vw;
   }
 }
 @media screen and (min-width: 920px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 50vw;
   }
 }
 @media screen and (min-width: 1000px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 45vw;
   }
 }
 @media screen and (min-width: 1080px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 40vw;
   }
 }
 @media screen and (min-width: 1160px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 35vw;
   }
 }
 @media screen and (min-width: 1400px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 30vw;
   }
   html {
@@ -459,19 +481,22 @@ a {
 }
 @media screen and (min-width: 1640px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 25vw;
   }
 }
 @media screen and (min-width: 1920px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --width: 30vw;
   }
 }
 @media screen and (min-width: 1920px) and (min-height: 1080px) {
   :root,
-  :root.dark {
+  :root.theme--light,
+  :root.theme--dark {
     --height: 70;
   }
   html {

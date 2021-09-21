@@ -65,22 +65,30 @@
     <script>
       const w = window,
         d = document,
-        de = d.documentElement,
-        storage = w.localStorage;
+        de = d.documentElement;
 
       let vh = w.innerHeight * 0.01;
       de.style.setProperty("--vh", `${vh}px`);
 
-      if (storage.getItem("theme") === null) {
-        const mediaQueryList = w.matchMedia("(prefers-color-scheme: light)");
+      //Color theme management
+      const light = "theme--light";
+      const dark = "theme--dark";
+
+      const t = localStorage.getItem("theme");
+      console.log(t);
+
+      if (t === null || (t !== light && t !== dark)) {
+        const mediaQueryList = w.matchMedia("(prefers-color-scheme: dark)");
 
         if (mediaQueryList.matches) {
-          de.classList.add("light");
+          de.classList.add(dark);
+          localStorage.setItem("theme", dark);
         } else {
-          de.classList.add("dark");
+          de.classList.add(light);
+          localStorage.setItem("theme", light);
         }
       } else {
-        de.classList.add(`${storage.getItem("theme")}`);
+        de.classList.add(t);
       }
     </script>
     <div class="calculator">

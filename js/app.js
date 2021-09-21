@@ -492,6 +492,22 @@ export function clear() {
         for (let i = 0; i < operation.length - 1; i++) {
           rebuild += operation[i];
         }
+
+        let preCheck = rebuild[rebuild.length - 2];
+        let lastCheck = rebuild[rebuild.length - 1];
+
+        if (
+          preCheck === "+" ||
+          preCheck === "-" ||
+          preCheck === "x" ||
+          preCheck === "/"
+        ) {
+          //There is a symbol
+          symbol = true;
+        } else if (lastCheck === ".") {
+          //There is a dot
+          symbol = true;
+        }
       }
     }
     operation = rebuild;

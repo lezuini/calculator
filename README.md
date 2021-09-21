@@ -25,15 +25,8 @@ _This project does not have any dependencies, it is pure HTML, CSS and JS code._
 To download it copy the code below and paste it in your terminal.
 
 ```
-git clone https://github.com/leonardomeza87/calculator.git
+git clone https://github.com/leonardomeza87/vanilla-calculator.git
 ```
-
-## Donations 🎁
-
-If you want to support me, sponsor me through these links:
-
-- [Ko-fi](https://ko-fi.com/meza87) ☕
-- [PayPal](https://www.paypal.me/universedll) 🐟
 
 ---
 

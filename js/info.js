@@ -3,7 +3,19 @@ const d = document,
 
 export default function info() {
   const toggleHide = () => {
-    $info.classList.toggle("hidden");
+    if (!$info.classList.contains("hidden")) {
+      $info.classList.remove("show");
+
+      setTimeout(() => {
+        $info.classList.add("hidden");
+      }, 210);
+    } else {
+      $info.classList.remove("hidden");
+
+      setTimeout(() => {
+        $info.classList.add("show");
+      }, 40);
+    }
   };
 
   d.addEventListener("click", (e) => {
